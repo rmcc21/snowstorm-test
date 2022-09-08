@@ -7,7 +7,7 @@ services:
       - node.name=snowstorm
       - cluster.name=snowstorm-cluster
       - cluster.initial_master_nodes=snowstorm
-      - "ES_JAVA_OPTS=-Xms8g -Xmx8g"
+      - "ES_JAVA_OPTS=-Xms12g -Xmx12g"
     volumes:
       - /data/elastic:/usr/share/elasticsearch/data
     networks:
@@ -21,7 +21,7 @@ services:
       retries: 60
     ports:
       - 127.0.0.1:9200:9200
-    mem_reservation: 8g
+    mem_reservation: 12g
 
 
   snowstorm:
@@ -31,7 +31,7 @@ services:
     depends_on:
       elasticsearch:
         condition: service_healthy
-    entrypoint: java -Xms4g -Xmx8g -jar snowstorm.jar --delete-indices --import=/snomed.zip
+    entrypoint: java -Xms6g -Xmx12g -jar snowstorm.jar --delete-indices --import=/snomed.zip --elasticsearch.urls=http://es:9200
    #entrypoint: java -Xms2g -Xmx8g -jar snowstorm.jar --elasticsearch.urls=http://es:9200
     networks:
       elastic:
