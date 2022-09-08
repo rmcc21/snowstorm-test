@@ -1,5 +1,6 @@
 # Servicio de Terminología - Servidor de Test
 
+Tener el cuenta que se utiliza como volumen de datos de los contenedores el directorio `/datos` siguiendo el esquema planteado por DIC.
 
 ## Configuracion de Linux
 Es necesario cambiar el siguiente parametro del kernel para elasticsearch:
@@ -46,16 +47,30 @@ Se recomienda subir los parámetros de memoria para los contenedores de `snowsto
 
 ### Puesta en marcha
 
-`docker compose up -d`
+`docker compose up -f docker-compose-test.yml -d`
 
+Tener en cuenta que es necesari realizar la Indexación inicial previamente y por unica vez.
 En caso de querer seguir el proceso de arranque
 
 `docker compose logs -f`
 
 
 ### Indexación inicial
+Copiar el archivo de terminologias a `/datos/snomed.zip`.
 
-https://github.com/IHTSDO/snowstorm/blob/master/docs/loading-snomed.md
+Por ejemplo
+
+`cp zipSnomedCT_Argentina-EditionRelease_PRODUCTION_20220531T120000Z.zip /datos/snomed.zip`
+
+Luego ejecutar 
+
+`docker compose up -f docker-compose-initial.yml -d`
+
+El proceso pueder durar mucho tiempo, es recomendable seguir el proceso visualizando los logs.
+
+
+*Fuente:
+https://github.com/IHTSDO/snowstorm/blob/master/docs/loading-snomed.md*
 
 
 
