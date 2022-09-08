@@ -47,12 +47,13 @@ Se recomienda subir los parámetros de memoria para los contenedores de `snowsto
 
 ### Puesta en marcha
 
-`docker compose up -f docker-compose-test.yml -d`
+`docker-compose up -f docker-compose-test.yml -d`
 
-Tener en cuenta que es necesari realizar la Indexación inicial previamente y por unica vez.
+Tener en cuenta que es necesario realizar la *Indexación Inicial* previamente y por unica vez.
+
 En caso de querer seguir el proceso de arranque
 
-`docker compose logs -f`
+`docker-compose -f docker-compose-test.yml logs -f`
 
 
 ### Indexación inicial
@@ -64,9 +65,10 @@ Por ejemplo
 
 Luego ejecutar 
 
-`docker compose up -f docker-compose-initial.yml -d`
+`docker-compose up -f docker-compose-initial.yml -d`
 
-El proceso pueder durar mucho tiempo, es recomendable seguir el proceso visualizando los logs.
+El proceso pueder durar mucho tiempo, es recomendable seguir el proceso visualizando los logs. 
+
 
 
 *Fuente:
